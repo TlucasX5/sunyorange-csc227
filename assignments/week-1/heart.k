@@ -1,21 +1,16 @@
-function old() {
-	while (frontIsClear()) {
-			
-		if (beepersPresent()) {
-			pickBeeper();
-			while (beepersInBag()) {
-				putBeeper();
-				move();
-			}
-		}
-		move();
-		while (frontIsBlocked()) {
-			turnAround();
-		}
-	} 
+function getBeepers() {
+	while (beepersPresent()) {
+		pickBeeper();
+	}
 
 }
 
+function putBeepers() {
+	while (beepersInBag()) {
+		putBeeper();
+		move();
+	}
+}
 
 function turnRight() {
 	turnLeft();
@@ -34,21 +29,26 @@ function turnAround(){
 	turnRight();
 }
 
-
-
-function main() {
-	while (frontIsClear()) {
-		move();
-		if (beepersPresent()) {
-			pickBeeper();
-			while (beepersInBag()) {
-				putBeeper();
-				move();
-			}
+function repeatRows() {
+	repeat(11) {
+		while (frontIsClear()) {
+			getBeepers();
+			putBeepers();	
 		}
 		if (frontIsBlocked()) {
 			turnAround();
 		}
 	}
+}
 
+function lastRow() {
+	while (frontIsClear()) {
+		move();
+	}
+}
+
+
+function main() {
+	repeatRows();
+	lastRow();
 }
