@@ -32,6 +32,7 @@ function turnAround(){
 function repeatRows() {
 	repeat(11) {
 		while (frontIsClear()) {
+			move();
 			getBeepers();
 			putBeepers();	
 		}
