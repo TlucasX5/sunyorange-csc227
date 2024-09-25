@@ -5,13 +5,13 @@ function diamondPattern(centerWidth) {
     let s = "";
 
     // Build top of diamond
-    for (i=1; i<=centerWidth; i+=2) {
+    for (let i=1; i<=centerWidth; i+=2) {
       
-      for (j=centerWidth; j>i; j-=2) {
+      for (let j=centerWidth; j>i; j-=2) {
           s += " ";
       }
 
-      for (k=0; k<i*2-1; k+=2) {
+      for (let k=0; k<i*2-1; k+=2) {
           s += "*";
       }
 
@@ -21,13 +21,13 @@ function diamondPattern(centerWidth) {
 
     
     // Build bottom of diamond
-    for (i=1; i<=centerWidth; i+=2) {
+    for (let i=1; i<=centerWidth; i+=2) {
 
-      for (j=0; j<i; j+=2) {
+      for (let j=0; j<i; j+=2) {
           s += " ";
       }
 
-      for (k=(centerWidth-i)*2-1; k>1; k-=2) {
+      for (let k=(centerWidth-i)*2-1; k>1; k-=2) {
           s += "*";
       }
 
@@ -35,7 +35,8 @@ function diamondPattern(centerWidth) {
 
     }
 
-    console.log(s);
+    //console.log(s)
+    return(s);
 
 }
 
