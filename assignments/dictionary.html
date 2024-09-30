@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="dictionary.js"></script>
+</head>
+<body>
+    <h2>Enter information to be added:</h2>
+
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="email">Email</label>
+    <input type="text" id="email" name="email" required>
+
+    <br><br>
+
+    <button onClick="onAddEmail()">Add My Info</button>
+
+    <br><br>
+
+    <h2>Email lookup</h2>
+    
+    <label for="name">Name</label>
+    <input type="text" id="findname" name="name" required>
+
+    <br><br>
+    
+    <button onClick="onShowEmail()">Get Email</button>
+    
+    <br><br>
+
+    <input type="text" id="res" name="email"></input>
+
+</body>
+</html>
