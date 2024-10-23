@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <style>
+        table, th, td {
+          table-layout: fixed;
+          border-collapse: collapse;
+          border: 1px solid black;
+        }
+
+        th {
+            padding: .15%;
+        }
+
+        td {
+            padding: .15%;
+            width: 50px;
+            height: 50px;
+            
+        }
+
+        button { 
+            width: 100%; 
+            height: 100%;
+        } 
+    </style>
+
+<head>
+    <title>Paint a Picture - Lab 8</title>
+</head>
+
+<body>
+
+    <div>
+        <table>
+            <tr>
+                <th colspan="8">Click a box to paint a picture</th>
+            </tr>
+            <tr>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+            </tr>
+            <tr>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+            </tr>
+            <tr>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+            </tr> 
+            <tr>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+            </tr> 
+            <tr>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+            </tr> 
+            <tr>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+            </tr> 
+            <tr>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+            </tr> 
+            <tr>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+                <td><button type="button"></button></td>
+            </tr> 
+        </table>
+
+        <br>
+        <label>Enter color and click button</label>
+        <input id="color" type="text"></input>
+
+    </div>
+
+    <script>
+
+        function main() {
+
+            const colorDic = {
+                "red" : "#FF0000",
+                "pink" : "#FFC0CB",
+                "purple" : "#800080",
+                "orange" : "#FFA500",
+                "yellow" : "#FFFF00",
+                "green" : "#008000",
+                "blue" : "#0000FF",
+                "brown" : "#A52A2A",
+                "white" : "#FFFFFF",
+                "grey" : "#808080",
+                "black" : "#000000"
+            }
+
+            const buttons = document.querySelectorAll("button"); //selects all buttons
+
+            buttons.forEach(function (button) { //loop through all buttons 
+                button.addEventListener("click", colorCell);
+            });
+
+            function colorCell(e) { //e for specific element
+                const color = document.getElementById("color").value; //get value entered in input box
+                e.target.style.backgroundColor = colorDic[color]; //uses current target (button clicked) to get color value for box based on input
+            }
+        }
+
+        main();
+
+    </script>
+
+</body>
+</html>
