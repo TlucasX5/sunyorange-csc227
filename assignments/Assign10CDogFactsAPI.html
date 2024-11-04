@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dog Breeds</title>
+</head>
+<body>
+    <header>
+        <h2>List of dog breeds</h2>
+        <button id="listBreeds">List Breeds</button>
+    </header>
+
+    <div id="breed"></div>
+
+    <script>
+            function main() {
+
+                function getBreeds() {
+
+                     //create instance of xml object
+                    const xhttp = new XMLHttpRequest();
+
+                    //specify method and url with input values
+                    const reqUrl = "https://dogapi.dog/api/v2/breeds";
+
+                    xhttp.open("GET", reqUrl, true);
+
+                    // load data from server and give error message if needed
+                    xhttp.onload = function() {
+                        if (xhttp.status >= 200 && xhttp.status < 400) {
+                            const resData = JSON.parse(xhttp.responseText);
+                            renderHTML(resData);
+                        } else {
+                            return "Server connection made but there is an error.";
+                        }
+                    };
+
+                    xhttp.onConnectError = function() {
+                        return "Connection Error";
+                    }
+
+                    //send request and receive response
+                    xhttp.send();
+                }
+
+                function renderHTML(data) {
+                    let htmlString = "";
+
+                    for (i = 0; i < data.length; i++) {
+                        htmlString += "<p>" + data[i].name + "<p>";
+                    }
+
+                    document.getElementById('breed').insertAdjacentHTML("beforeend", htmlString);
+
+                }   
+                
+                document.getElementById('listBreeds').addEventListener('click', getBreeds);
+            } 
+
+        main();
+                
+    </script>
+</body>
+</html>
