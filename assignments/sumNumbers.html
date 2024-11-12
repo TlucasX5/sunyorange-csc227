@@ -1,0 +1,59 @@
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Add Numbers</title>
+    </head>
+    <body>
+        <h2>Enter 2 numbers to find the sum:</h2>
+        <br>
+        <label for="num1">Num 1</label>
+        <input type="text" id="a" required>
+
+        <label for="num2">Num 2</label>
+        <input type="text" id="b" required>
+        <br><br>
+
+        <button id="getSum">Submit</button>
+
+        <br><br>
+        <p>Sum of numbers</p>
+        <p id="sum"></p>
+
+        <script>
+            function main() {
+
+                function getSumHandler() {
+
+                     //create instance of xml object
+                    const xhttp = new XMLHttpRequest();
+                    
+                    // get values from input
+                    const a = document.getElementById("a").value;
+                    const b = document.getElementById("b").value;
+
+                    //specify method and url with input values
+                    const reqUrl = "http://localhost:3000/api/addNums?num1=${a}&num2=${b}";
+
+                    xhttp.open("GET", reqUrl, true);
+
+                    xhttp.onload = function() {
+                        const res = JSON.parse(xhttp.responseText);
+                        document.getElementById("sum").innerHTML = res;
+                    };
+
+
+                    //xhttp.addEventListener("load", function(e) {
+                    //    const res = JSON.parse(e.target.responseText);
+                    //    document.getElementById("sum").innerHTML = res;});
+
+                    xhttp.send();
+                }
+
+                document.getElementById('getSum').addEventListener('click', getSumHandler);
+            } 
+
+            main();
+                
+        </script>
+    </body>
+    </html>
