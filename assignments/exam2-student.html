@@ -1,0 +1,512 @@
+<html>
+<body>
+<h1>Exam 2</h1>
+<p>Open this file in both your browser and your preferred text editor.  As you update your answers in the text editor, save the file, refresh it in the browser (F5), and re-run the automated tests to see your progress.</p>
+<p>Your final score for this exam will be decided by the instructor - the automated tests are provided only as a real-time tool during your test taking.</p>
+<p>Each question has a point value.  Work on how ever many questions to build your score up to 100%.</p>
+<p>For questions that ask you to 'Fill in the missing code segments' you must replace every __________________________ placeholder with the actual code that completes the function.</p>
+<p>If you cannot figure out the missing code segment for a given question, try a different question.  If you run out of questions, go back and see if you can just write all the code for one of the functions, rather than just the missing code; everyone programs differently and you may have an easier time writing the entire function in some cases...</p>
+<p>For questions that ask you to write an entire function, that's what you have to do.</p>
+<br>
+
+<input id="rows" type="text" placeholder="rows"></input><br>
+<input id="cols" type="text" placeholder="columns"></input><br>
+<input id="createSizedTableBtn" type="button" onclick="createSizedTable()" value="Create Sized Table"></input><br>
+<div id="tblContainer"></div><br>
+<br>
+
+<input id="highlightEmptyBtn" type="button" onclick="highlightEmptyTextFields()" value="Highlight Empty Text Fields"></input><br>
+<br>
+
+<input id="runTestsBtn" type="button" value="Run Tests" onclick="runTests()"></input><br>
+<div id="testResulstsContainer"></div><br>
+
+<script>
+// Q0 - 5 points: Fill in the missing code segments
+//
+// this function adds the two input numbers together and returns that result
+function add(a, b) {
+    return a + b;
+}
+</script>
+
+<script>
+// Q1 - 12 points: Fill in the missing code segments.
+//
+// this function reverses the input array: example [3, 2, 1] -> [1, 2, 3]
+function reverseArray(origArray) {
+    const revArray = [];
+    for (let i = origArray.length - 1; i >= 0; i--) {
+        let nextFromRight = origArray[i] ; 
+        revArray.push(nextFromRight);
+    }
+    return revArray;
+}
+</script>
+
+
+<script>
+// Q2 - 12 points: Fill in the missing code segments.
+//
+// this function zips two arrays together
+// so that the output array contains all elements of both arrays
+// with the values alternating between those from the first input array and the second input array
+// if the input arrays are not the same length then the output should end with the remaining elements of the longer input array
+//
+// example: zip([1, 3, 5], [2, 4, 6]) returns [1, 2, 3, 4, 5, 6]
+// example: zip([1, 2], [9, 8, 7]) returns [1, 9, 2, 8, 7]
+function zip(left, right) {
+    const result = [];
+    let maxLength = left.length;
+    if (right.length > maxLength) {
+        maxLength = right.length;
+    }
+    for (let i = 0; i < maxLength; i++) {
+        if (i < left.length) {
+            result.push(left[i]);
+        }
+        if (i > right.length) {
+            result.push(right[i]);
+        }
+    }
+    return result;
+}
+</script>
+
+
+<script>
+// Q3 - 12 points: Fill in the missing code segments.
+//
+// write a function that converts an input array of key and value pairs to an object containing those same key and value pairs
+// the input array has keys at even indices and values at odd indices
+//
+// example: array ["USA", 1, "JAPAN", 2, "CHINA", 3] converts to object {"USA": 1, "JAPAN": 2, "CHINA": 3}
+function arrayToObject(a) {
+    const res = {};
+    for (let i = 0; i < a.length; i += 2) {
+        res[a[i]] = (a[i+1]);
+    }
+    return res;
+}
+</script>
+
+
+<script>
+// Q4 - 12 points: Fill in the missing code segments.
+//
+// this function will set every empty text field red indicating to the user that they must provide those answers
+// target and test using the text fields that are already present on this page (see above)
+function highlightEmptyTextFields() {
+    const fields = document.querySelectorAll('input');
+    for (let i = 0; i < fields.length; i++) {
+        if (fields[i].value === "") {
+            fields[i].style.backgroundColor = 'red';
+        } else {
+            fields[i].style.backgroundColor = '';
+        }
+    }
+}
+</script>
+
+<script>
+// Q5 - 12 points: Fill in the missing code segments.
+//
+// this function will find the values common to the two input arrays - i.e. their intersection
+// example: intersection of [1, 2, 3, 4, 5, 6, 7] and [0, 3, 6, 9] is [3, 6]
+function intersection(l, r) {
+    const lMap = {};
+    for (let i = 0; i < l.length; i++) {
+        const lVal = l[i];
+        lMap[lVal] = 1;
+    }
+    const res = [];
+    for (let i = 0; i < r.length; i++) {
+        const rVal = r[i];
+        if (lMap[rVal] === 1) {
+            res.push(rVal);
+        }
+    }
+    return res;
+}
+</script>
+
+
+<script>
+// Q6 - 12 points: Fill in the missing code segments.
+//
+// this function will combine the two input arrays and produce their union, without duplicate values
+// example: union of [1, 2, 3, 4] and [2, 3, 4, 5] is [1, 2, 3, 4, 5]
+function union(l, r) {
+    const res = {};
+    for (let i = 0; i < l.length; i++) {
+        const lVal = l[i];
+        res[lVal] = 1;
+    }
+    for (let i = 0; i < r.length; i++) {
+        const rVal = r[i];
+        res[rVal] = 1;
+    }
+    return Object.keys(res);
+}
+</script>
+
+<script>
+// Q7 - 12 points: Fill in the missing code segments.
+//
+// this function will check user input text for equality, normalizing the input to ignore extra leading/trailing spaces and also case differences
+function compareNormalized(l, r) {
+    const lNoSpaces = l.trim();
+    const rNoSpaces = r.trim();
+    const lLowerNoSpaces = lNoSpaces.toLowerCase();
+    const rLowerNoSpaces = rNoSpaces.toLowerCase();
+    return lLowerNoSpaces === rLowerNoSpaces;
+}
+</script>
+
+<script>
+// Q8 - 24 points: Fill in the missing code segments.
+//
+// we're simulating a blackjack table - write the endRound function logic the dealer would use to find winners and pay them twice what they bet
+function cardVal(c) {
+    if (c >= 0 && c <= 9) {
+        return c;
+    } else if (c == "A") {
+        return 11;
+    } else {
+        return 10;
+    }
+}
+
+function handVal(cards) {
+    let totVal = 0;
+    for (let i = 0; i < cards.length; i++) {
+        totVal += cardVal(cards[i]);
+    }
+    if (totVal > 21) {
+        return -1;
+    }
+    return totVal;
+}
+
+function endRound(t) {
+    const dealerHandVal = handVal(t.dealer.cards); //9
+    for (let i = 0; i < t.players.length; i++) {
+        const playerHandVal = handVal(t.players[i].cards);
+        if (playerHandVal >= dealerHandVal) {
+            t.players[i].bal += t.players[i].bet * 2;
+        }
+    }
+}
+
+function simulateBlackJack() {
+    const players = [
+        {
+            "name": "Bond",
+            "cards": ["A", "J"], //win
+            "bet": 120000,
+            "bal": 10000000
+        },
+        {
+            "name": "Tank",
+            "cards": [3, 9, 2], // loose
+            "bet": 999999,
+            "bal": 1
+        },
+        {
+            "name": "Rang",
+            "cards": ["A", 2, "J", 9], // loose
+            "bet": 777,
+            "bal": 123
+        },
+    ];
+
+    const table = {
+        "players": players,
+        "dealer": {
+            "cards": ["K", 9],
+        }
+    };
+    
+    endRound(table);
+    return table;
+}
+</script>
+
+
+<script>
+// Q9 - 30 points: Program the createSizedTable function allowing the user to create a table of a specific size they specify
+// use the 'rows' and 'cols' text fields on this page to enter the desired number of rows and columns
+// build the table inside of the 'tblContainer' div
+
+function createSizedTable() {
+    const tblContainer = document.getElementById('tblContainer');
+    const rows = document.getElementById('rows').value;
+    const cols = document.getElementById('cols').value;
+    const table = document.createElement('table');
+    const tableBody = document.createElement('tbody');
+          
+    for (let i = 0; i < rows; i++) {
+        const row = document.createElement('tr');
+          
+        for (let j = 0; j < cols; j++) {
+            const cell = document.createElement('td');
+            const input = document.createElement('input');
+            cell.appendChild(input);
+            row.appendChild(cell);
+        }
+        tableBody.appendChild(row);
+    }
+          
+    table.appendChild(tableBody);
+    document.getElementById('tblContainer').innerHTML = '';
+    document.getElementById('tblContainer').appendChild(table);
+};
+
+</script>
+
+<script>
+// Q10 - 30 points: Write a function called filterGreaterThan that accepts an input array and a pivot number and returns an array containing all values from the input array that are greater than the specified number.
+//
+// examples: filterGreatherThan([1, 2, 3, 4, 5, 6], 4) returns [5, 6] and filterGreatherThan([0, 1, 2, 3], 0) returns [1, 2, 3]
+
+function filterGreaterThan(arr, pivot) {
+    let result = []; 
+       
+    for(let i = 0; i < arr.length; i++){ 
+      if(arr[i] > pivot){ 
+        result.push(arr[i]); 
+      } 
+    } 
+    return result;
+  } 
+
+</script>
+
+filterGreatherThan([1, 2, 3, 4, 5, 6], 4);
+
+
+<!-- TEST ENDS HERE - DON'T FOOL WITH WHAT's BELOW -->
+
+<script>
+
+
+function runTests() {
+    const FNU = "Function unavailable (syntax error possibly)";
+    const P = "Tests Passed";
+    const F = "Tests Failed";
+
+    function safe(tf) {
+        try {
+            return tf();
+        } catch (e) {
+            return F;
+        }
+    }
+
+    function testAdd() {
+        if (!window.add) {
+            return FNU;
+        }
+
+        return (add(8, 7) == 15) ? P : F;
+
+    }
+
+    function testReverseArray() {
+        if (!window.reverseArray) {
+            return FNU;
+        }
+        let res = reverseArray([3, 2, 1]);
+        if (res[0] != 1) {
+            return F;
+        }
+        if (res[1] != 2) {
+            return F;
+        }
+        if (res[2] != 3) {
+            return F;
+        }
+        return P;
+    }
+
+    function testZip() {
+        if (!window.zip) {
+            return FNU;
+        }
+        let res = zip([1, 3, 5], [2, 4, 6]);
+        for (let i = 0; i < 6; i++) {
+            if (res[i] != i + 1) {
+                return F;
+            }
+        }
+        return P;
+    }
+
+    function testArrayToObject() {
+        if (!window.arrayToObject) {
+            return FNU;
+        }
+        let res = arrayToObject(["USA", 1, "JAPAN", 2, "CHINA", 3]);
+        if (res["USA"] != 1) {
+            return F;
+        }
+        if (res["JAPAN"] != 2) {
+            return F;
+        }
+        if (res["CHINA"] != 3) {
+            return F;
+        }
+        return P;
+    }
+
+    function testHighlightEmptyTextFields() {
+        if (!window.highlightEmptyTextFields) {
+            return FNU;
+        }
+
+        const rows = document.getElementById('rows');
+        const cols = document.getElementById('cols');
+
+        rows.value = '';
+        cols.value = '';
+        highlightEmptyTextFields();
+        const bothRed = (rows.style.backgroundColor == 'red' && cols.style.backgroundColor == 'red');
+
+        rows.value = '1';
+        cols.value = '';
+        highlightEmptyTextFields();
+        const colsRed = (rows.style.backgroundColor == '' && cols.style.backgroundColor == 'red');
+
+        rows.value = '';
+        cols.value = '1';
+        highlightEmptyTextFields();
+        const rowsRed = (rows.style.backgroundColor == 'red' && cols.style.backgroundColor == '');
+
+        rows.value = '1';
+        cols.value = '1';
+        highlightEmptyTextFields();
+        const neitherRed = (rows.style.backgroundColor == '' && cols.style.backgroundColor == '');
+
+        return (bothRed && rowsRed && colsRed && neitherRed) ? P : F;
+
+    }
+
+    function testIntersection() {
+        if (!window.intersection) {
+            return FNU;
+        }
+
+        const res = intersection([1, 2, 3, 4, 5, 6, 7], [0, 3, 6, 9])
+        return (res.length == 2 && res[0] == 3 && res[1] == 6) ? P : F;
+    }
+
+    function testUnion() {
+        if (!window.union) {
+            return FNU;
+        }
+
+        const res = union([1, 2, 3, 4], [4, 5])
+        return (res.length == 5 && res[0] == 1 && res[1] == 2 && res[2] == 3 && res[3] == 4 && res[4] == 5) ? P : F;
+    }
+
+    function testCompareNormalized() {
+        if (!window.compareNormalized) {
+            return FNU;
+        }
+
+        return (
+            compareNormalized('  Abc  ', 'abc') &&
+            compareNormalized('ABC', 'aBC    ') &&
+            compareNormalized('abc', 'abc') &&
+            compareNormalized('ABC', 'ABC') &&
+            !compareNormalized('dog', 'cat')) ? P : F;
+    }
+
+    function testSimulateBlackJack() {
+        if (!window.simulateBlackJack) {
+            return FNU;
+        }
+        const updatedTable = simulateBlackJack();
+        return (
+            (updatedTable.players[0].bal == (10000000 + 120000 * 2)) &&
+            (updatedTable.players[1].bal == (1)) &&
+            (updatedTable.players[2].bal == (123))
+        ) ? P : F;
+    }
+
+    function testCreateSizedTable() {
+        if (!window.createSizedTable) {
+            return FNU;
+        }
+        const rows = document.getElementById('rows');
+        const cols = document.getElementById('cols');
+        rows.value = 3;
+        cols.value = 2;
+        createSizedTable();
+        const rowElems = document.getElementById('tblContainer').querySelectorAll('tr');
+        if (rowElems.length != 3) {
+            return F;
+        }
+        for (let i = 0; i < 3; i++) {
+            const cellElems = rowElems[i].querySelectorAll('td');
+            if (cellElems.length != 2) {
+                return F;
+            }
+        }
+        return P;
+    }
+
+    function testFilterGreaterThan() {
+        if (!window.filterGreaterThan) {
+            return FNU;
+        }
+        const res = filterGreaterThan([1, 2, 3, 4, 5, 6], 4);
+        return (res && res.length == 2 && res[0] == 5 && res[1] == 6) ? P : F;
+    }
+
+    const res = {
+        "add": safe(testAdd),
+        "reverseArray": safe(testReverseArray),
+        "zip": safe(testZip),
+        "arrayToObject": safe(testArrayToObject),
+        "highlightEmptyTextFields": safe(testHighlightEmptyTextFields),
+        "intersection": safe(testIntersection),
+        "union": safe(testUnion),
+        "compareNormalized": safe(testCompareNormalized),
+        "simulateBlackJack": safe(testSimulateBlackJack),
+        "createSizedTable": safe(testCreateSizedTable),
+        "filterGreaterThan": safe(testFilterGreaterThan),
+    };
+    const resHtml = "<pre>" + JSON.stringify(res, null, 2) + "</pre>";
+    document.getElementById("testResulstsContainer").innerHTML = resHtml;
+}
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
